@@ -6,8 +6,10 @@ export function proxy(request: NextRequest) {
   if (auth) {
     const [scheme, encoded] = auth.split(" ");
     if (scheme === "Basic" && encoded) {
-      const decoded = Buffer.from(encoded, "base64").toString();
-      const [user, pass] = decoded.split(":");
+      const decoded = Buffer.from(encoded, "base64").toString("utf-8");
+      const colonIndex = decoded.indexOf(":");
+      const user = decoded.slice(0, colonIndex);
+      const pass = decoded.slice(colonIndex + 1);
       const validUser = process.env.ADMIN_USER || "";
       const validPass = process.env.ADMIN_PASSWORD || "";
 
