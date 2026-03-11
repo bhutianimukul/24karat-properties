@@ -125,20 +125,53 @@
 - `/admin/blog` — Coming soon
 - `/admin/inquiries` — Coming soon
 
+## Completed (Phase 3 — Deployment + News + UI Animations Batch 1)
+- [x] GitHub repo: https://github.com/bhutianimukul/24karat-properties (public)
+- [x] Deployed to Vercel: https://24karat-properties.vercel.app
+- [x] 9 env vars configured (Supabase, Groq, Gemini, WhatsApp, Admin creds)
+- [x] Admin creds removed from source code (reads from env vars only)
+- [x] Property News — live RSS from TOI + HT, real images, hourly random rotation
+- [x] "Read More" link fixed (was dead span, now links to Google News)
+- [x] ScrollReveal + StaggerContainer + StaggerItem reusable animation components
+- [x] Noida page: header fade-in, hot location pills stagger, CTA scroll-reveal
+- [x] ImageCarousel: arrows now visible on mobile
+
+## Completed (Phase 3.5 — UI Animations Batch 2)
+- [x] Dholera page: header fade-in, "Why Dholera" banner entrance, hot location pills stagger, CTA scroll-reveal
+- [x] About page: header scroll-reveal, company card reveal, quick stats stagger, founder badge + card reveal, stats stagger, expertise stagger, CTA scroll-reveal
+- [x] Testimonials: header scroll-reveal, stats stagger animation
+- [x] List Property: header fade-in, form card entrance, success screen bounce checkmark (spring physics) + text fade
+- [x] WhatsApp float: tooltip fade-in with slide (CSS transition, no Framer Motion overhead)
+
+## Completed (Phase 3.5 — UI Animations Batch 3)
+- [x] Compare page: header fade-in, tab content transitions (AnimatePresence + motion.div fade/slide)
+- [x] AI Insights Panel: expand/collapse with Framer Motion AnimatePresence (height + opacity)
+- [x] Property detail: image carousel fade-in, title/price entrance, quick details cards stagger
+
+## Completed (Phase 4 — SEO + Structured Data)
+- [x] `/robots.txt` — allows all crawlers, blocks /admin/ and /api/
+- [x] `/sitemap.xml` — dynamic, fetches all active property slugs from Supabase
+- [x] Property detail page converted to **server component** — `generateMetadata()` for dynamic title/description/OG
+- [x] JSON-LD: `RealEstateListing` schema on property pages (price, address, geo, images, rooms)
+- [x] JSON-LD: `BreadcrumbList` schema on property pages (Home → City → Property)
+- [x] JSON-LD: `RealEstateAgent` schema on homepage (business name, contact, founder, areas served)
+- [x] Open Graph + Twitter Card metadata on root layout (`metadataBase`, `openGraph`, `twitter`)
+- [x] Dynamic OG images — property pages use primary image, title, and price
+- [x] Canonical URLs on root layout and property pages
+- [x] `PropertyDetailClient` extracted — clean server/client split, no more loading flash for crawlers
+- [x] Zero new dependencies — all built-in Next.js 16 Metadata API
+
 ## Build Status
-- **Next.js 16.1.6** (Turbopack) — 44 pages, 0 TypeScript errors, 0 warnings
-- 1 deprecation notice: middleware → proxy migration (Next.js 16 change)
-- Supabase live — all endpoints tested and returning data
+- **Next.js 16.1.6** (Turbopack) — 47 pages, 0 TypeScript errors, 0 warnings
 
 ## Next Session — Priority Order
 
-### Phase 3 — Advanced Features
+### Phase 4 — Remaining Features
 - [x] AI property analysis — working via Groq (Llama 3.3 70B) with Gemini fallback
 - [x] AI location highlights — nearby places, connectivity, price trends
 - [x] AI compare — quick comparison + deep per-property analysis
-- [x] Property News — live RSS from TOI + HT, real images, hourly rotation, "Read More" link
-- [ ] Blog system (admin + public pages, /blog/[slug] UI ready, /api/blog ready)
-- [ ] SEO + sitemap + structured data (JSON-LD)
+- [x] Property News — live RSS, real images, hourly rotation
+- [x] SEO + sitemap + structured data (JSON-LD)
 - [ ] Inquiry form frontend (wire to /api/inquiry + WhatsApp)
 - [ ] Wishlist UI (save/unsave properties, localStorage + /api/wishlist)
 - [ ] Admin auth upgrade to Supabase Auth (replace HTTP Basic Auth)
@@ -157,6 +190,7 @@
 - EMI calculator defaults to property price as loan amount
 - Sort by price + latest on city pages
 - Contact Us removed from header (not needed)
+- News should feel random, not hardcoded — no blog system for now
 
 ## Tech Stack
 - Next.js 16.1.6 + Tailwind CSS 4 + Framer Motion 12
@@ -165,4 +199,4 @@
 - MapLibre GL JS + OpenStreetMap + Google Maps Satellite + Google Earth embed
 - Groq AI (Llama 3.3 70B primary) + Gemini 2.0 Flash (fallback)
 - Overpass API (nearby POIs) + Nominatim (geocoding)
-- Render hosting | Total cost: $0/month
+- Vercel hosting | Total cost: $0/month

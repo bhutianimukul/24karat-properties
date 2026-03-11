@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -31,13 +32,14 @@ export default function AboutPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
       {/* Header */}
-      <div className="text-center mb-12">
+      <ScrollReveal className="text-center mb-12">
         <h1 className="text-3xl sm:text-5xl font-bold mb-4">
           About <span className="text-gold-gradient">24 Karat Properties</span>
         </h1>
-      </div>
+      </ScrollReveal>
 
       {/* Company Section */}
+      <ScrollReveal delay={0.1}>
       <Card className="p-6 sm:p-10 mb-6">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-12 h-12 rounded-xl bg-gold flex items-center justify-center">
@@ -68,22 +70,25 @@ export default function AboutPage() {
           </p>
         </div>
       </Card>
+      </ScrollReveal>
 
       {/* Company Quick Stats + Map */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        <div className="grid grid-cols-2 gap-4">
+        <StaggerContainer className="grid grid-cols-2 gap-4">
           {[
             { value: "Est. 2021", label: "Founded" },
             { value: "7 Days", label: "Office Open" },
             { value: "Noida HQ", label: "Headquartered" },
             { value: "Pan India", label: "Network" },
           ].map((item) => (
-            <Card key={item.label} className="p-4 text-center">
+            <StaggerItem key={item.label}>
+            <Card className="p-4 text-center">
               <div className="text-lg font-bold text-gold">{item.value}</div>
               <div className="text-xs text-muted mt-0.5">{item.label}</div>
             </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
         <div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.2!2d77.4522601!3d28.6085845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef5f99407105%3A0x69a274e3d24fd8c2!2sGulshan%20Bellina!5e0!3m2!1sen!2sin!4v1710000000000"
@@ -100,13 +105,14 @@ export default function AboutPage() {
       </div>
 
       {/* Meet the Founder */}
-      <div className="text-center mb-8">
+      <ScrollReveal className="text-center mb-8">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-muted border border-gold/20">
           <span className="text-sm text-gold">Meet the Founder</span>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Founder Card */}
+      <ScrollReveal delay={0.1}>
       <Card className="p-6 sm:p-10 mb-10">
         <div className="flex flex-col md:flex-row gap-8 items-start">
           {/* Photo */}
@@ -217,25 +223,30 @@ export default function AboutPage() {
           </div>
         </div>
       </Card>
+      </ScrollReveal>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+      <StaggerContainer className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
         {stats.map((stat) => (
-          <Card key={stat.label} className="p-5 text-center">
+          <StaggerItem key={stat.label}>
+          <Card className="p-5 text-center">
             <div className="text-3xl font-bold text-gold mb-1">{stat.value}</div>
             <div className="text-xs text-muted">{stat.label}</div>
           </Card>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
 
       {/* Key Expertise */}
+      <ScrollReveal>
       <Card className="p-6 sm:p-8 mb-10">
         <h3 className="text-xl font-bold mb-6">
           Key <span className="text-gold-gradient">Expertise</span>
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {expertise.map((item) => (
-            <div key={item} className="flex items-start gap-3">
+            <StaggerItem key={item}>
+            <div className="flex items-start gap-3">
               <div className="w-5 h-5 mt-0.5 shrink-0 rounded-full bg-gold-muted flex items-center justify-center">
                 <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -243,11 +254,14 @@ export default function AboutPage() {
               </div>
               <span className="text-sm text-muted">{item}</span>
             </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Card>
+      </ScrollReveal>
 
       {/* CTA */}
+      <ScrollReveal>
       <Card className="p-8 text-center bg-gradient-to-br from-surface to-surface-light">
         <h3 className="text-2xl font-bold mb-3">
           Ready to find your <span className="text-gold-gradient">perfect property</span>?
@@ -264,6 +278,7 @@ export default function AboutPage() {
           </a>
         </div>
       </Card>
+      </ScrollReveal>
     </div>
   );
 }

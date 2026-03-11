@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { getAllProperties } from "@/lib/supabase/queries";
@@ -220,14 +221,19 @@ export default function ComparePropertiesPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <div className="mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-8"
+      >
         <h1 className="text-2xl sm:text-3xl font-bold mb-2">
           Compare <span className="text-gold-gradient">Properties</span>
         </h1>
         <p className="text-sm text-muted">
           Select up to 3 properties to compare side by side. Make smarter decisions with clear comparisons.
         </p>
-      </div>
+      </motion.div>
 
       {/* Property selector */}
       <Card className="p-4 mb-6">
@@ -344,9 +350,16 @@ export default function ComparePropertiesPage() {
               </button>
             </div>
 
-            {/* ═══ Tab 1: Quick Compare ═══ */}
+            {/* ═══ Tab Content with Transitions ═══ */}
+            <AnimatePresence mode="wait">
             {aiTab === "comparison" && (
-              <>
+              <motion.div
+                key="comparison"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+              >
                 {/* Generate button */}
                 {!aiResult && !aiLoading && (
                   <div className="text-center py-4">
@@ -440,12 +453,18 @@ export default function ComparePropertiesPage() {
                     </div>
                   </>
                 )}
-              </>
+              </motion.div>
             )}
 
             {/* ═══ Tab 2: Deep Analysis ═══ */}
             {aiTab === "deep-analysis" && (
-              <>
+              <motion.div
+                key="deep-analysis"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+              >
                 {/* Generate button */}
                 {deepAnalysis.length === 0 && !deepLoading && (
                   <div className="text-center py-4">
@@ -638,8 +657,9 @@ export default function ComparePropertiesPage() {
                     </div>
                   </>
                 )}
-              </>
+              </motion.div>
             )}
+            </AnimatePresence>
           </Card>
         </div>
       )}

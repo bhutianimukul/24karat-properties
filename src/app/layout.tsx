@@ -32,6 +32,23 @@ export const metadata: Metadata = {
     "AI property analysis",
     "24 Karat Properties",
   ],
+  metadataBase: new URL("https://24karat-properties.vercel.app"),
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "24 Karat Properties",
+    title: "24 Karat Properties | AI-Powered Real Estate",
+    description: "Find premium properties in Noida and Dholera with AI-powered analysis, investment scores, and expert guidance.",
+    url: "https://24karat-properties.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "24 Karat Properties | AI-Powered Real Estate",
+    description: "Find premium properties in Noida and Dholera with AI-powered analysis.",
+  },
+  alternates: {
+    canonical: "https://24karat-properties.vercel.app",
+  },
 };
 
 export default function RootLayout({

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 
@@ -30,15 +31,22 @@ export default function ListPropertyPage() {
   if (submitted) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center">
-        <div className="w-16 h-16 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-4">
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+          className="w-16 h-16 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-4"
+        >
           <svg className="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
-        </div>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }}>
         <h1 className="text-2xl font-bold mb-2">Listing Request Sent!</h1>
         <p className="text-sm text-muted mb-6">
           Kawal will review your property details and get back to you within 24 hours.
         </p>
+        </motion.div>
         <div className="flex items-center justify-center gap-3">
           <a href="/noida">
             <Button>Browse Properties</Button>
@@ -53,15 +61,25 @@ export default function ListPropertyPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <div className="mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-8"
+      >
         <h1 className="text-2xl sm:text-3xl font-bold mb-2">
           List Your <span className="text-gold-gradient">Property</span>
         </h1>
         <p className="text-sm text-muted">
           Want to sell or rent your property? Submit your details and our team will list it on 24 Karat Properties with professional photos and AI analysis.
         </p>
-      </div>
+      </motion.div>
 
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.15 }}
+      >
       <Card className="p-5 sm:p-6 space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -128,6 +146,7 @@ export default function ListPropertyPage() {
           Your details will be sent via WhatsApp. We&apos;ll respond within 24 hours with a free property valuation.
         </p>
       </Card>
+      </motion.div>
     </div>
   );
 }

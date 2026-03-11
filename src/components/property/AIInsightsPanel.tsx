@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import type { AIAnalysis } from "@/types/property";
@@ -268,8 +269,15 @@ export function AIInsightsPanel({ property }: { property: PropertyData }) {
           )}
 
           {/* Expanded: Area Outlook + Best For */}
+          <AnimatePresence>
           {analysis && expanded && (
-            <>
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden space-y-4"
+            >
               <div className="p-3 rounded-lg bg-surface-light border border-surface-border">
                 <p className="text-xs font-medium mb-1">Area Outlook</p>
                 <p className="text-xs text-muted">{analysis.area_outlook}</p>
@@ -278,8 +286,9 @@ export function AIInsightsPanel({ property }: { property: PropertyData }) {
                 <p className="text-xs font-medium mb-1">Best For</p>
                 <p className="text-xs text-muted">{analysis.best_for}</p>
               </div>
-            </>
+            </motion.div>
           )}
+          </AnimatePresence>
 
           {analysis && (
             <button

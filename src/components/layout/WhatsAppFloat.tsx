@@ -30,12 +30,10 @@ export function WhatsAppFloat() {
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
-        {showTooltip && (
-          <div className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap bg-surface border border-surface-border rounded-lg px-3 py-1.5 text-xs text-foreground shadow-lg">
-            Chat with us
-            <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-surface border-r border-b border-surface-border rotate-[-45deg]" />
-          </div>
-        )}
+        <div className={`absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap bg-surface border border-surface-border rounded-lg px-3 py-1.5 text-xs text-foreground shadow-lg transition-all duration-200 ${showTooltip ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2 pointer-events-none"}`}>
+          Chat with us
+          <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-surface border-r border-b border-surface-border rotate-[-45deg]" />
+        </div>
         <a
           href={whatsappUrl}
           target="_blank"

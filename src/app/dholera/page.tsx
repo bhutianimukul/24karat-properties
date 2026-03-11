@@ -65,7 +65,12 @@ export default function DholeraPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <div className="mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-8"
+      >
         <p className="text-sm text-gold font-medium tracking-wide mb-2">&ldquo;India ka Pehla Smart City — Dholera&rdquo;</p>
         <h1 className="text-2xl sm:text-4xl font-bold mb-2">
           Properties in <span className="text-gold-gradient">Dholera Smart City</span>
@@ -74,26 +79,42 @@ export default function DholeraPage() {
           India&apos;s first greenfield smart city. International airport, DMIC corridor, and massive
           government investment making Dholera the hottest investment destination in Gujarat.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="bg-gold-muted border border-gold/20 rounded-xl p-4 sm:p-5 mb-6">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.15 }}
+        className="bg-gold-muted border border-gold/20 rounded-xl p-4 sm:p-5 mb-6"
+      >
         <p className="text-sm text-gold font-medium mb-1">Why Dholera?</p>
         <p className="text-xs text-muted">
           Dholera SIR is a government-backed Special Investment Region spanning 920 sq km — 6x the size of Shanghai.
           With international airport, expressway, metro rail, and solar park under development, early investors are seeing
           15-25% annual appreciation.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="flex items-center gap-2 flex-wrap mb-6">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.25 }}
+        className="flex items-center gap-2 flex-wrap mb-6"
+      >
         <span className="text-sm font-medium text-muted">🔥 Hot Locations</span>
         <span className="text-surface-border">|</span>
-        {hotLocations.map((area) => (
-          <span key={area.name} className="inline-flex items-center gap-1.5 px-3 py-1 text-xs rounded-full bg-gold/10 text-gold/90">
+        {hotLocations.map((area, i) => (
+          <motion.span
+            key={area.name}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.35 + i * 0.05 }}
+            className="inline-flex items-center gap-1.5 px-3 py-1 text-xs rounded-full bg-gold/10 text-gold/90"
+          >
             {area.name} <span className="text-muted font-normal">· {area.tag}</span>
-          </span>
+          </motion.span>
         ))}
-      </div>
+      </motion.div>
 
       <CityFilters type={type} budget={budget} sort={sort} transaction={transaction} onTypeChange={setType} onBudgetChange={setBudget} onSortChange={setSort} onTransactionChange={setTransaction} />
 
@@ -121,7 +142,7 @@ export default function DholeraPage() {
         </div>
       )}
 
-      <div className="mt-12 bg-surface rounded-xl border border-surface-border p-6 sm:p-8 text-center">
+      <ScrollReveal className="mt-12 bg-surface rounded-xl border border-surface-border p-6 sm:p-8 text-center">
         <h2 className="text-xl font-bold mb-2">Interested in Dholera investment?</h2>
         <p className="text-sm text-muted mb-4 max-w-md mx-auto">
           Get expert guidance on plot selection, documentation, and investment strategy for Dholera Smart City.
@@ -133,7 +154,7 @@ export default function DholeraPage() {
         >
           Get Dholera Investment Advice
         </a>
-      </div>
+      </ScrollReveal>
     </div>
   );
 }
