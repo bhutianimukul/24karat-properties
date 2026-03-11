@@ -1,26 +1,162 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dark + Gold Theme */
+  --background: #0a0a0f;
+  --foreground: #f5f5f5;
+  --gold: #d4a853;
+  --gold-light: #e8c875;
+  --gold-dark: #b8922e;
+  --gold-muted: rgba(212, 168, 83, 0.15);
+  --surface: #13131a;
+  --surface-light: #1a1a24;
+  --surface-border: #2a2a3a;
+  --muted: #8a8a9a;
+  --danger: #ef4444;
+  --success: #22c55e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-muted: var(--gold-muted);
+  --color-surface: var(--surface);
+  --color-surface-light: var(--surface-light);
+  --color-surface-border: var(--surface-border);
+  --color-muted: var(--muted);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 3px;
+}
+
+/* Hide scrollbar for filter rows */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Gold gradient text utility */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 50%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Floating animation for background elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+.animate-float-delayed {
+  animation: float 7s ease-in-out 2s infinite;
+}
+
+/* Glow pulse for CTAs and highlights */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 83, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(212, 168, 83, 0.15); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Bounce for WhatsApp float */
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-bounce-soft {
+  animation: bounce-soft 2s ease-in-out infinite;
+}
+
+/* Fade up for scroll reveals (CSS-only fallback) */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide in from left/right for mobile swipe feel */
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Smooth horizontal scroll snap for mobile filters */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-snap-x > * {
+  scroll-snap-align: start;
+}
+
+/* Tap highlight removal for mobile */
+@media (max-width: 640px) {
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Smooth page transitions */
+main {
+  animation: fade-up 0.4s ease-out;
+}
+
+/* Active state for filter pills on mobile */
+.filter-pill:active {
+  transform: scale(0.95);
+  transition: transform 0.1s;
 }
