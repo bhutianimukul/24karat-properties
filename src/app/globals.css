@@ -160,3 +160,42 @@ main {
   transform: scale(0.95);
   transition: transform 0.1s;
 }
+
+/* Touch-friendly range sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: var(--surface-light);
+  border-radius: 3px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--background);
+  box-shadow: 0 0 0 2px var(--gold-dark);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--background);
+  box-shadow: 0 0 0 2px var(--gold-dark);
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+}
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  background: var(--surface-light);
+  border-radius: 3px;
+}

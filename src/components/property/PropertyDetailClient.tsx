@@ -221,7 +221,7 @@ export function PropertyDetailClient({ property }: { property: Property }) {
                     </div>
                     <input type="range" min={500000} max={Math.max(property.price * 2, 10000000)} step={100000}
                       value={effectiveLoan}
-                      onChange={(e) => setLoanAmount(Number(e.target.value))} className="w-full accent-gold" />
+                      onChange={(e) => setLoanAmount(Number(e.target.value))} className="w-full" />
                     <div className="flex justify-between text-[10px] text-muted mt-0.5">
                       <span>5L</span>
                       <button onClick={() => setLoanAmount(property.price)} className="text-gold cursor-pointer hover:underline">Reset to property price</button>
@@ -232,14 +232,14 @@ export function PropertyDetailClient({ property }: { property: Property }) {
                       <span>Rate</span><span>{rate}%</span>
                     </div>
                     <input type="range" min={6} max={12} step={0.25} value={rate}
-                      onChange={(e) => setRate(Number(e.target.value))} className="w-full accent-gold" />
+                      onChange={(e) => setRate(Number(e.target.value))} className="w-full" />
                   </div>
                   <div>
                     <div className="flex justify-between text-xs text-muted mb-1">
                       <span>Tenure</span><span>{years} yr</span>
                     </div>
                     <input type="range" min={5} max={30} value={years}
-                      onChange={(e) => setYears(Number(e.target.value))} className="w-full accent-gold" />
+                      onChange={(e) => setYears(Number(e.target.value))} className="w-full" />
                   </div>
                   <div className="bg-surface-light rounded-lg p-3 text-center">
                     <p className="text-xs text-muted">Estimated EMI</p>

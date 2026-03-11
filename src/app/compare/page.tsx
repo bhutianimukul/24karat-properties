@@ -265,7 +265,7 @@ export default function ComparePropertiesPage() {
             </svg>
 
             {dropdownOpen && searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-surface border border-surface-border rounded-xl shadow-xl shadow-black/20 max-h-60 overflow-y-auto z-50">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-surface border border-surface-border rounded-xl shadow-xl shadow-black/20 max-h-[40vh] sm:max-h-60 overflow-y-auto z-50">
                 {searchResults.slice(0, 20).map((p) => (
                   <button
                     key={p.id}
@@ -664,44 +664,72 @@ export default function ComparePropertiesPage() {
         </div>
       )}
 
-      {/* Comparison table */}
+      {/* Comparison table — card layout on mobile, table on desktop */}
       {selected.length >= 2 ? (
-        <Card className="overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-surface-light border-b border-surface-border">
-                  <th className="px-4 py-3 text-left text-xs text-muted font-medium w-32">Feature</th>
-                  {selected.map((p) => (
-                    <th key={p.id} className="px-4 py-3 text-left text-xs font-medium min-w-[180px]">
-                      <div className="line-clamp-2">{p.title}</div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => (
-                  <tr key={row.label} className="border-b border-surface-border/50">
-                    <td className="px-4 py-2.5 text-muted text-xs">{row.label}</td>
-                    {selected.map((p) => {
-                      const val = row.getValue(p);
-                      const isBest = row.highlight && selected.length > 1 && (
-                        row.label === "Price"
-                          ? p.price === Math.min(...selected.map((s) => s.price))
-                          : false
-                      );
-                      return (
-                        <td key={p.id} className={`px-4 py-2.5 ${isBest ? "text-gold font-medium" : ""}`}>
-                          {val}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <>
+          {/* Mobile: stacked cards */}
+          <div className="sm:hidden space-y-4">
+            {selected.map((p) => (
+              <Card key={p.id} className="p-4">
+                <h3 className="text-sm font-semibold mb-3 text-gold line-clamp-2">{p.title}</h3>
+                <div className="space-y-2">
+                  {rows.map((row) => {
+                    const val = row.getValue(p);
+                    const isBest = row.highlight && selected.length > 1 && (
+                      row.label === "Price"
+                        ? p.price === Math.min(...selected.map((s) => s.price))
+                        : false
+                    );
+                    return (
+                      <div key={row.label} className="flex justify-between py-1.5 border-b border-surface-border/30 last:border-0">
+                        <span className="text-xs text-muted">{row.label}</span>
+                        <span className={`text-xs font-medium ${isBest ? "text-gold" : ""}`}>{val}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Card>
+            ))}
           </div>
-        </Card>
+
+          {/* Desktop: table */}
+          <Card className="overflow-hidden hidden sm:block">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-surface-light border-b border-surface-border">
+                    <th className="px-4 py-3 text-left text-xs text-muted font-medium w-32">Feature</th>
+                    {selected.map((p) => (
+                      <th key={p.id} className="px-4 py-3 text-left text-xs font-medium min-w-[180px]">
+                        <div className="line-clamp-2">{p.title}</div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row) => (
+                    <tr key={row.label} className="border-b border-surface-border/50">
+                      <td className="px-4 py-2.5 text-muted text-xs">{row.label}</td>
+                      {selected.map((p) => {
+                        const val = row.getValue(p);
+                        const isBest = row.highlight && selected.length > 1 && (
+                          row.label === "Price"
+                            ? p.price === Math.min(...selected.map((s) => s.price))
+                            : false
+                        );
+                        return (
+                          <td key={p.id} className={`px-4 py-2.5 ${isBest ? "text-gold font-medium" : ""}`}>
+                            {val}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </>
       ) : (
         <Card className="p-12 text-center">
           <p className="text-muted text-sm">

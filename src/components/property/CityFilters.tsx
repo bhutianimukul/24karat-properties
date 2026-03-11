@@ -25,20 +25,24 @@ const sortOptions: { value: SortOption; label: string }[] = [
 
 function PillRow({ items, selected, onSelect }: { items: string[]; selected: string; onSelect: (v: string) => void }) {
   return (
-    <div className="flex gap-1.5 overflow-x-auto scrollbar-none scroll-snap-x pb-1 -mx-1 px-1">
-      {items.map((item) => (
-        <button
-          key={item}
-          onClick={() => onSelect(item)}
-          className={`filter-pill shrink-0 px-3.5 py-2 text-xs rounded-full border transition-all duration-200 cursor-pointer active:scale-95 ${
-            selected === item
-              ? "bg-gold-muted text-gold border-gold/30 shadow-sm shadow-gold/10"
-              : "bg-surface-light text-muted border-surface-border hover:border-gold/20 hover:text-foreground"
-          }`}
-        >
-          {item}
-        </button>
-      ))}
+    <div className="relative flex-1 min-w-0">
+      <div className="flex gap-1.5 overflow-x-auto scrollbar-none scroll-snap-x pb-1 -mx-1 px-1">
+        {items.map((item) => (
+          <button
+            key={item}
+            onClick={() => onSelect(item)}
+            className={`filter-pill shrink-0 px-3.5 py-2 text-xs rounded-full border transition-all duration-200 cursor-pointer active:scale-95 ${
+              selected === item
+                ? "bg-gold-muted text-gold border-gold/30 shadow-sm shadow-gold/10"
+                : "bg-surface-light text-muted border-surface-border hover:border-gold/20 hover:text-foreground"
+            }`}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+      {/* Fade hint for scrollable content */}
+      <div className="absolute right-0 top-0 bottom-1 w-6 bg-gradient-to-l from-background/80 to-transparent pointer-events-none sm:hidden" />
     </div>
   );
 }
@@ -58,28 +62,19 @@ export function CityFilters({ type, budget, sort, transaction, onTypeChange, onB
         <PillRow items={propertyTypes} selected={type} onSelect={onTypeChange} />
       </div>
 
-      {/* Budget + Sort row */}
+      {/* Budget */}
       <div className="flex items-center gap-3">
         <span className="text-[10px] sm:text-xs text-muted shrink-0 font-medium uppercase tracking-wider">Budget</span>
-        <div className="flex-1 flex gap-1.5 overflow-x-auto scrollbar-none scroll-snap-x pb-1 -mx-1 px-1">
-          {budgets.map((b) => (
-            <button
-              key={b}
-              onClick={() => onBudgetChange(b)}
-              className={`filter-pill shrink-0 px-3.5 py-2 text-xs rounded-full border transition-all duration-200 cursor-pointer active:scale-95 ${
-                budget === b
-                  ? "bg-gold-muted text-gold border-gold/30 shadow-sm shadow-gold/10"
-                  : "bg-surface-light text-muted border-surface-border hover:border-gold/20 hover:text-foreground"
-              }`}
-            >
-              {b}
-            </button>
-          ))}
-        </div>
+        <PillRow items={budgets} selected={budget} onSelect={onBudgetChange} />
+      </div>
+
+      {/* Sort */}
+      <div className="flex items-center gap-3">
+        <span className="text-[10px] sm:text-xs text-muted shrink-0 font-medium uppercase tracking-wider">Sort</span>
         <select
           value={sort}
           onChange={(e) => onSortChange(e.target.value as SortOption)}
-          className="shrink-0 bg-surface-light border border-surface-border rounded-lg px-2.5 py-2 text-xs focus:outline-none focus:border-gold/50 text-muted"
+          className="bg-surface-light border border-surface-border rounded-lg px-2.5 py-2 text-xs focus:outline-none focus:border-gold/50 text-muted"
         >
           {sortOptions.map((s) => (
             <option key={s.value} value={s.value}>{s.label}</option>

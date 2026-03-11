@@ -25,10 +25,17 @@ export function Header() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
   const toolsRef = useRef<HTMLDivElement>(null);
   const isHome = pathname === "/";
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+    setMobileToolsOpen(false);
+  }, [pathname]);
 
   // Close tools dropdown on outside click
   useEffect(() => {
@@ -175,13 +182,12 @@ export function Header() {
 
         {/* Mobile Nav */}
         {menuOpen && (
-          <nav className="md:hidden pb-4 border-t border-surface-border pt-3 space-y-0.5" style={{ animation: "fade-up 0.25s ease-out" }}>
+          <nav className="md:hidden pb-3 border-t border-surface-border pt-2 space-y-0.5 max-h-[60vh] overflow-y-auto" style={{ animation: "fade-up 0.25s ease-out" }}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={`block px-3 py-2 text-sm transition-colors rounded-lg ${
+                className={`block px-3 py-1.5 text-sm transition-colors rounded-lg ${
                   isActive(link.href)
                     ? "text-gold bg-gold/10"
                     : "text-muted hover:text-gold hover:bg-surface-light"
@@ -190,41 +196,49 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-2 pb-1 px-3">
-              <p className="text-[10px] text-muted uppercase tracking-wider font-medium">Tools</p>
-            </div>
-            {toolsLinks.map((tool) => (
-              <Link
-                key={tool.href}
-                href={tool.href}
-                onClick={() => setMenuOpen(false)}
-                className={`block px-3 py-2 text-sm transition-colors rounded-lg ${
-                  isActive(tool.href)
-                    ? "text-gold bg-gold/10"
-                    : "text-muted hover:text-gold hover:bg-surface-light"
-                }`}
-              >
-                {tool.label}
-              </Link>
-            ))}
-            <div className="pt-2 space-y-2">
-              <Link href="/compare" onClick={() => setMenuOpen(false)}>
-                <Button variant="secondary" size="sm" className="w-full border-gold/30 text-gold hover:bg-gold/10">
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  Compare Properties
-                </Button>
-              </Link>
-              <Link href="/list-property" onClick={() => setMenuOpen(false)}>
-                <Button variant="secondary" size="sm" className="w-full border-gold/30 text-gold hover:bg-gold/10">
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                  List Property
-                </Button>
-              </Link>
-            </div>
+
+            {/* Collapsible Tools */}
+            <button
+              onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
+              className={`flex items-center justify-between w-full px-3 py-1.5 text-sm transition-colors rounded-lg cursor-pointer ${
+                pathname.startsWith("/tools")
+                  ? "text-gold bg-gold/10"
+                  : "text-muted hover:text-gold hover:bg-surface-light"
+              }`}
+            >
+              Tools
+              <svg className={`w-3.5 h-3.5 transition-transform ${mobileToolsOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {mobileToolsOpen && (
+              <div className="pl-4 space-y-0.5">
+                {toolsLinks.map((tool) => (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    className={`block px-3 py-1.5 text-sm transition-colors rounded-lg ${
+                      isActive(tool.href)
+                        ? "text-gold bg-gold/10"
+                        : "text-muted hover:text-gold hover:bg-surface-light"
+                    }`}
+                  >
+                    {tool.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            <Link
+              href="/compare"
+              className={`block px-3 py-1.5 text-sm transition-colors rounded-lg ${
+                isActive("/compare")
+                  ? "text-gold bg-gold/10"
+                  : "text-muted hover:text-gold hover:bg-surface-light"
+              }`}
+            >
+              Compare
+            </Link>
           </nav>
         )}
       </div>

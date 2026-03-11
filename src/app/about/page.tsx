@@ -42,8 +42,20 @@ export default function AboutPage() {
       <ScrollReveal delay={0.1}>
       <Card className="p-6 sm:p-10 mb-6">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 rounded-xl bg-gold flex items-center justify-center">
-            <span className="text-background font-bold">24K</span>
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#111118] to-[#08080c] border border-gold/30 flex items-center justify-center relative overflow-hidden">
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 36 36" fill="none">
+              <path d="M18 5 L27 15 L18 31 L9 15 Z" fill="url(#aboutGold)" opacity="0.15"/>
+              <path d="M18 5 L27 15 L18 31 L9 15 Z" stroke="url(#aboutGold)" strokeWidth="0.6" opacity="0.3"/>
+              <line x1="9" y1="15" x2="27" y2="15" stroke="url(#aboutGold)" strokeWidth="0.4" opacity="0.2"/>
+              <defs>
+                <linearGradient id="aboutGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f0d78c"/>
+                  <stop offset="50%" stopColor="#d4a853"/>
+                  <stop offset="100%" stopColor="#9a7b2d"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span className="relative text-xs font-black bg-gradient-to-r from-[#d4a853] via-[#f5e6b8] to-[#d4a853] bg-clip-text text-transparent tracking-wide">24K</span>
           </div>
           <div>
             <h2 className="text-xl font-bold">The Company</h2>
@@ -122,7 +134,7 @@ export default function AboutPage() {
               alt="Kawal Dua - Founder, 24 Karat Properties"
               width={160}
               height={160}
-              className="w-40 h-40 rounded-2xl border-2 border-gold/30 object-cover"
+              className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl border-2 border-gold/30 object-cover"
               priority
             />
           </div>
@@ -139,23 +151,23 @@ export default function AboutPage() {
             <div className="flex flex-wrap gap-2 mb-4">
               <a
                 href="tel:+919582806827"
-                className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-light border border-surface-border rounded-lg text-sm hover:border-gold/50 hover:text-gold transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-light border border-surface-border rounded-lg text-xs sm:text-sm hover:border-gold/50 hover:text-gold transition-colors"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                +91 95828 06827
+                <span className="truncate">+91 95828 06827</span>
               </a>
               <a
                 href="https://mail.google.com/mail/?view=cm&to=kawal.dua56@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-light border border-surface-border rounded-lg text-sm hover:border-gold/50 hover:text-gold transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-light border border-surface-border rounded-lg text-xs sm:text-sm hover:border-gold/50 hover:text-gold transition-colors min-w-0"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                kawal.dua56@gmail.com
+                <span className="truncate">kawal.dua56@gmail.com</span>
               </a>
             </div>
 

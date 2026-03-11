@@ -42,9 +42,9 @@ export default async function TestimonialsPage() {
           { value: "13+", label: "Years of Trust" },
         ].map((stat) => (
           <StaggerItem key={stat.label}>
-          <div className="bg-surface rounded-xl border border-surface-border p-4 text-center">
-            <div className="text-2xl font-bold text-gold">{stat.value}</div>
-            <div className="text-xs text-muted mt-1">{stat.label}</div>
+          <div className="bg-surface rounded-xl border border-surface-border p-3 sm:p-4 text-center">
+            <div className="text-xl sm:text-2xl font-bold text-gold">{stat.value}</div>
+            <div className="text-[10px] sm:text-xs text-muted mt-1 leading-tight">{stat.label}</div>
           </div>
           </StaggerItem>
         ))}

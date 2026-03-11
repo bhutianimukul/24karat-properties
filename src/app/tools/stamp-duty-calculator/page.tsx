@@ -55,7 +55,7 @@ export default function StampDutyCalculator() {
               min={500000} max={50000000} step={100000}
               value={propertyValue}
               onChange={(e) => setPropertyValue(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
             <div className="flex justify-between text-[10px] text-muted mt-1">
               <span>5L</span><span>5Cr</span>

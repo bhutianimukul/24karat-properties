@@ -73,7 +73,7 @@ export default function InvestmentCalculatorPage() {
               </div>
             </div>
             <input type="range" min={500000} max={50000000} step={100000} value={purchasePrice}
-              onChange={(e) => setPurchasePrice(Number(e.target.value))} className="w-full accent-gold" />
+              onChange={(e) => setPurchasePrice(Number(e.target.value))} className="w-full" />
             <div className="flex justify-between text-xs text-muted mt-1"><span>5 L</span><span>5 Cr</span></div>
           </div>
 
@@ -89,7 +89,7 @@ export default function InvestmentCalculatorPage() {
               </div>
             </div>
             <input type="range" min={0} max={25} step={0.5} value={annualAppreciation}
-              onChange={(e) => setAnnualAppreciation(Number(e.target.value))} className="w-full accent-gold" />
+              onChange={(e) => setAnnualAppreciation(Number(e.target.value))} className="w-full" />
             <div className="flex justify-between text-xs text-muted mt-1"><span>0%</span><span>25%</span></div>
           </div>
 
@@ -105,7 +105,7 @@ export default function InvestmentCalculatorPage() {
               </div>
             </div>
             <input type="range" min={1} max={20} step={1} value={holdingPeriod}
-              onChange={(e) => setHoldingPeriod(Number(e.target.value))} className="w-full accent-gold" />
+              onChange={(e) => setHoldingPeriod(Number(e.target.value))} className="w-full" />
             <div className="flex justify-between text-xs text-muted mt-1"><span>1 Year</span><span>20 Years</span></div>
           </div>
 
@@ -121,7 +121,7 @@ export default function InvestmentCalculatorPage() {
               </div>
             </div>
             <input type="range" min={0} max={8} step={0.5} value={rentalYield}
-              onChange={(e) => setRentalYield(Number(e.target.value))} className="w-full accent-gold" />
+              onChange={(e) => setRentalYield(Number(e.target.value))} className="w-full" />
             <div className="flex justify-between text-xs text-muted mt-1"><span>0%</span><span>8%</span></div>
           </div>
 

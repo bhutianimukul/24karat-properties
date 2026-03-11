@@ -96,8 +96,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Logo */}
         <div className="p-4 border-b border-surface-border">
           <Link href="/admin" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gold flex items-center justify-center text-background font-bold text-xs">
-              24K
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#111118] to-[#08080c] border border-gold/30 flex items-center justify-center relative overflow-hidden">
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 36 36" fill="none">
+                <path d="M18 5 L27 15 L18 31 L9 15 Z" fill="url(#adminGold)" opacity="0.15"/>
+                <path d="M18 5 L27 15 L18 31 L9 15 Z" stroke="url(#adminGold)" strokeWidth="0.6" opacity="0.3"/>
+                <line x1="9" y1="15" x2="27" y2="15" stroke="url(#adminGold)" strokeWidth="0.4" opacity="0.2"/>
+                <defs>
+                  <linearGradient id="adminGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#f0d78c"/>
+                    <stop offset="50%" stopColor="#d4a853"/>
+                    <stop offset="100%" stopColor="#9a7b2d"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span className="relative text-[10px] font-black bg-gradient-to-r from-[#d4a853] via-[#f5e6b8] to-[#d4a853] bg-clip-text text-transparent tracking-wide">24K</span>
             </div>
             <div>
               <p className="text-sm font-bold">Admin Panel</p>

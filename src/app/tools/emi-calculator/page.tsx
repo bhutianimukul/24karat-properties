@@ -76,7 +76,7 @@ export default function EMICalculatorPage() {
               step={100000}
               value={loanAmount}
               onChange={(e) => setLoanAmount(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
             <div className="flex justify-between text-xs text-muted mt-1">
               <span>1 L</span>
@@ -106,7 +106,7 @@ export default function EMICalculatorPage() {
               step={0.1}
               value={interestRate}
               onChange={(e) => setInterestRate(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
             <div className="flex justify-between text-xs text-muted mt-1">
               <span>5%</span>
@@ -135,7 +135,7 @@ export default function EMICalculatorPage() {
               step={1}
               value={tenure}
               onChange={(e) => setTenure(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
             <div className="flex justify-between text-xs text-muted mt-1">
               <span>1 Year</span>

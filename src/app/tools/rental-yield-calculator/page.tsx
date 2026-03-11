@@ -62,7 +62,7 @@ export default function RentalYieldCalculator() {
               type="range" min={500000} max={50000000} step={100000}
               value={purchasePrice}
               onChange={(e) => setPurchasePrice(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
 
@@ -75,7 +75,7 @@ export default function RentalYieldCalculator() {
               type="range" min={2000} max={200000} step={1000}
               value={monthlyRent}
               onChange={(e) => setMonthlyRent(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
 
@@ -88,7 +88,7 @@ export default function RentalYieldCalculator() {
               type="range" min={0} max={20000} step={500}
               value={maintenanceMonthly}
               onChange={(e) => setMaintenanceMonthly(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
 
@@ -101,7 +101,7 @@ export default function RentalYieldCalculator() {
               type="range" min={0} max={6} step={1}
               value={vacancyMonths}
               onChange={(e) => setVacancyMonths(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
 
@@ -114,7 +114,7 @@ export default function RentalYieldCalculator() {
               type="range" min={0} max={25} step={0.5}
               value={appreciation}
               onChange={(e) => setAppreciation(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
         </Card>

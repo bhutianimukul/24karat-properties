@@ -75,7 +75,7 @@ export default function AffordabilityCalculator() {
               type="range" min={20000} max={1000000} step={5000}
               value={monthlyIncome}
               onChange={(e) => setMonthlyIncome(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
 
@@ -88,7 +88,7 @@ export default function AffordabilityCalculator() {
               type="range" min={0} max={200000} step={1000}
               value={existingEMIs}
               onChange={(e) => setExistingEMIs(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
 
@@ -101,7 +101,7 @@ export default function AffordabilityCalculator() {
               type="range" min={0} max={20000000} step={100000}
               value={downPaymentSavings}
               onChange={(e) => setDownPaymentSavings(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
 
@@ -114,7 +114,7 @@ export default function AffordabilityCalculator() {
               type="range" min={6} max={12} step={0.25}
               value={interestRate}
               onChange={(e) => setInterestRate(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
 
@@ -127,7 +127,7 @@ export default function AffordabilityCalculator() {
               type="range" min={5} max={30}
               value={loanTenure}
               onChange={(e) => setLoanTenure(Number(e.target.value))}
-              className="w-full accent-gold"
+              className="w-full"
             />
           </div>
         </Card>

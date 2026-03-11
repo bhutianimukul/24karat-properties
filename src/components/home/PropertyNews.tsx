@@ -78,7 +78,7 @@ export function PropertyNews() {
             className="group bg-surface rounded-xl border border-surface-border overflow-hidden transition-all duration-300 hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 hover:-translate-y-1"
           >
             {/* Image */}
-            <div className="relative h-40 bg-surface-light overflow-hidden">
+            <div className="relative h-32 sm:h-40 bg-surface-light overflow-hidden">
               {article.image ? (
                 <img
                   src={article.image}

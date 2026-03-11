@@ -69,7 +69,7 @@ export function CitySelector() {
                     {city.highlights.map((h) => (
                       <span
                         key={h}
-                        className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs bg-gold-muted text-gold rounded-full border border-gold/20"
+                        className="px-2.5 py-0.5 sm:py-1 text-xs bg-gold-muted text-gold rounded-full border border-gold/20"
                       >
                         {h}
                       </span>

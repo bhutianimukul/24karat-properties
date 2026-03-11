@@ -51,15 +51,15 @@ function extractFromXML(xml: string, fallbackSource: string): NewsArticle[] {
       rawDesc.match(/<img[^>]+src=["']([^"']+)["']/)?.[1] ||
       null;
 
-    // Clean HTML for display
+    // Clean HTML for display — decode entities FIRST, then strip tags
     const cleanDesc = rawDesc
-      .replace(/<[^>]*>/g, "")
       .replace(/&amp;/g, "&")
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">")
       .replace(/&quot;/g, '"')
       .replace(/&#39;/g, "'")
       .replace(/&nbsp;/g, " ")
+      .replace(/<[^>]*>/g, "")
       .trim();
 
     const cleanTitle = title

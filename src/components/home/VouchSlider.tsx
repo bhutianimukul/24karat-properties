@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -61,6 +61,17 @@ export function VouchSlider() {
     return seededShuffle(mapped).slice(0, 3);
   }, [rawVouches]);
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.scrollWidth / vouches.length;
+    const index = Math.round(el.scrollLeft / cardWidth);
+    setActiveIndex(Math.min(index, vouches.length - 1));
+  }, [vouches.length]);
+
   if (loading) {
     return (
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
@@ -89,7 +100,7 @@ export function VouchSlider() {
       </div>
 
       {/* Mobile: horizontal scroll, Desktop: grid */}
-      <div className="flex md:grid md:grid-cols-3 gap-4 sm:gap-6 mb-2 md:mb-8 overflow-x-auto scrollbar-none scroll-snap-x -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible pb-2 md:pb-0">
+      <div ref={scrollRef} onScroll={handleScroll} className="flex md:grid md:grid-cols-3 gap-4 sm:gap-6 mb-2 md:mb-8 overflow-x-auto scrollbar-none scroll-snap-x -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible pb-2 md:pb-0">
         {vouches.map((vouch, i) => (
           <motion.div
             key={vouch.name}
@@ -123,7 +134,7 @@ export function VouchSlider() {
       {/* Scroll hint — mobile only */}
       <div className="flex items-center justify-center gap-1.5 mb-6 md:hidden">
         {vouches.map((_, i) => (
-          <span key={i} className={`w-1.5 h-1.5 rounded-full ${i === 0 ? "bg-gold" : "bg-surface-border"}`} />
+          <span key={i} className={`w-1.5 h-1.5 rounded-full transition-colors ${i === activeIndex ? "bg-gold" : "bg-surface-border"}`} />
         ))}
         <span className="text-[10px] text-muted ml-1.5">swipe</span>
       </div>
