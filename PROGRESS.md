@@ -164,17 +164,34 @@
 ## Build Status
 - **Next.js 16.1.6** (Turbopack) — 47 pages, 0 TypeScript errors, 0 warnings
 
-## Next Session — Priority Order
+## Project Status: FEATURE COMPLETE (v1)
+All planned features delivered. WhatsApp handles inquiries, admin auth works for single-user, wishlist not needed.
 
-### Phase 4 — Remaining Features
-- [x] AI property analysis — working via Groq (Llama 3.3 70B) with Gemini fallback
-- [x] AI location highlights — nearby places, connectivity, price trends
-- [x] AI compare — quick comparison + deep per-property analysis
-- [x] Property News — live RSS, real images, hourly rotation
-- [x] SEO + sitemap + structured data (JSON-LD)
-- [ ] Inquiry form frontend (wire to /api/inquiry + WhatsApp)
-- [ ] Wishlist UI (save/unsave properties, localStorage + /api/wishlist)
-- [ ] Admin auth upgrade to Supabase Auth (replace HTTP Basic Auth)
+### Deferred (not needed per user)
+- ~~Inquiry form frontend~~ — WhatsApp covers this
+- ~~Wishlist UI~~ — not required
+- ~~Admin auth upgrade~~ — HTTP Basic Auth works fine
+
+## Future — Phase 5: Dynamic Cities (when needed)
+Admin can add new cities, nav/dropdowns/pages auto-update. Currently cities are hardcoded in ~12 places.
+
+### Scope
+1. Admin → "Manage Cities" CRUD (name, slug, state, tagline, description)
+2. Admin → "Manage Areas" per city
+3. One dynamic `/city/[slug]` page replaces `/noida` + `/dholera`
+4. Redirects: `/noida` → `/city/noida`, `/dholera` → `/city/dholera`
+5. Header nav — fetch cities from Supabase (dynamic tabs)
+6. Homepage CitySelector + FeaturedProperties — data-driven
+7. Footer city links — dynamic
+8. List Property form city dropdown — dynamic
+9. Admin dropdowns (properties, videos, hot locations) — dynamic
+10. Sitemap — include dynamic city URLs
+
+### Hardcoded city locations to refactor
+- Header nav, Footer, Homepage (CitySelector, FeaturedProperties)
+- `/noida/page.tsx`, `/dholera/page.tsx` → single `/city/[slug]/page.tsx`
+- List Property form, Admin properties form, Admin videos, Admin hot locations
+- WhatsApp message templates referencing city names
 
 ## Contact Details
 - Phone: +91 95828 06827 | WhatsApp: 919582806827
