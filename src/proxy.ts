@@ -1,17 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
-  // Only protect admin routes
-  if (!request.nextUrl.pathname.startsWith("/admin")) {
-    return NextResponse.next();
-  }
-
+export function proxy(request: NextRequest) {
   const auth = request.headers.get("authorization");
 
   if (auth) {
     const [scheme, encoded] = auth.split(" ");
     if (scheme === "Basic" && encoded) {
-      const decoded = atob(encoded);
+      const decoded = Buffer.from(encoded, "base64").toString();
       const [user, pass] = decoded.split(":");
       const validUser = process.env.ADMIN_USER || "";
       const validPass = process.env.ADMIN_PASSWORD || "";
