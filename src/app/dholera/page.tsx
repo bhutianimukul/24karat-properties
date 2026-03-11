@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
 import { PropertyCard } from "@/components/property/PropertyCard";
 import { getProperties, getActiveVideoForCity, getHotLocations } from "@/lib/supabase/queries";
 import { CityFilters, type SortOption } from "@/components/property/CityFilters";
 import { CityVideoHighlight } from "@/components/property/CityVideoHighlight";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { Property } from "@/types/property";
 import type { CityVideo } from "@/lib/sample-videos";
 

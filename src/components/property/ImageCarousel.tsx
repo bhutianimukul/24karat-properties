@@ -56,7 +56,7 @@ export function ImageCarousel({ images, aspect = "16/10" }: { images: PropertyIm
         <>
           <button
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); scrollTo(current - 1); }}
-            className={`absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm border border-surface-border flex items-center justify-center text-foreground opacity-70 sm:opacity-0 group-hover:opacity-100 transition-all active:scale-90 cursor-pointer ${current === 0 ? "hidden" : ""}`}
+            className={`absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm border border-surface-border flex items-center justify-center text-foreground opacity-80 sm:opacity-0 group-hover:opacity-100 transition-all active:scale-90 cursor-pointer ${current === 0 ? "hidden" : ""}`}
             aria-label="Previous image"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,7 +65,7 @@ export function ImageCarousel({ images, aspect = "16/10" }: { images: PropertyIm
           </button>
           <button
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); scrollTo(current + 1); }}
-            className={`absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm border border-surface-border flex items-center justify-center text-foreground opacity-70 sm:opacity-0 group-hover:opacity-100 transition-all active:scale-90 cursor-pointer ${current === images.length - 1 ? "hidden" : ""}`}
+            className={`absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm border border-surface-border flex items-center justify-center text-foreground opacity-80 sm:opacity-0 group-hover:opacity-100 transition-all active:scale-90 cursor-pointer ${current === images.length - 1 ? "hidden" : ""}`}
             aria-label="Next image"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

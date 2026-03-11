@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
 import { PropertyCard } from "@/components/property/PropertyCard";
 import { getProperties, getActiveVideoForCity, getHotLocations } from "@/lib/supabase/queries";
 import { CityFilters, type SortOption } from "@/components/property/CityFilters";
 import { CityVideoHighlight } from "@/components/property/CityVideoHighlight";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { Property } from "@/types/property";
 import type { CityVideo } from "@/lib/sample-videos";
 
@@ -63,7 +65,12 @@ export default function NoidaPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <div className="mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-8"
+      >
         <p className="text-sm text-gold font-medium tracking-wide mb-2">&ldquo;Sapno ka Ghar, Noida mein&rdquo;</p>
         <h1 className="text-2xl sm:text-4xl font-bold mb-2">
           Properties in <span className="text-gold-gradient">Noida &amp; Greater Noida</span>
@@ -72,17 +79,28 @@ export default function NoidaPage() {
           Explore flats, commercial shops, villas, and plots across Noida, Greater Noida West, and Greater Noida.
           Jewar Airport, Aqua Line Metro, and Expressway connectivity driving growth.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="flex items-center gap-2 flex-wrap mb-6">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+        className="flex items-center gap-2 flex-wrap mb-6"
+      >
         <span className="text-sm font-medium text-muted">🔥 Hot Locations</span>
         <span className="text-surface-border">|</span>
-        {hotLocations.map((area) => (
-          <span key={area.name} className="inline-flex items-center gap-1.5 px-3 py-1 text-xs rounded-full bg-gold/10 text-gold/90">
+        {hotLocations.map((area, i) => (
+          <motion.span
+            key={area.name}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
+            className="inline-flex items-center gap-1.5 px-3 py-1 text-xs rounded-full bg-gold/10 text-gold/90"
+          >
             {area.name} <span className="text-muted font-normal">· {area.tag}</span>
-          </span>
+          </motion.span>
         ))}
-      </div>
+      </motion.div>
 
       <CityFilters type={type} budget={budget} sort={sort} transaction={transaction} onTypeChange={setType} onBudgetChange={setBudget} onSortChange={setSort} onTransactionChange={setTransaction} />
 
@@ -110,7 +128,7 @@ export default function NoidaPage() {
         </div>
       )}
 
-      <div className="mt-12 bg-surface rounded-xl border border-surface-border p-6 sm:p-8 text-center">
+      <ScrollReveal className="mt-12 bg-surface rounded-xl border border-surface-border p-6 sm:p-8 text-center">
         <h2 className="text-xl font-bold mb-2">Can&apos;t find what you&apos;re looking for?</h2>
         <p className="text-sm text-muted mb-4 max-w-md mx-auto">
           Tell us your requirements and we&apos;ll find the perfect property for you. We have access to many unlisted properties.
@@ -122,7 +140,7 @@ export default function NoidaPage() {
         >
           Share Requirements on WhatsApp
         </a>
-      </div>
+      </ScrollReveal>
     </div>
   );
 }
